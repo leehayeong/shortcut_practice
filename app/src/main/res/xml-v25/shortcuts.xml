@@ -18,6 +18,7 @@
         -->
         <intent
             android:action="android.intent.action.VIEW"
+            android:data="pinned://deeplink"
             android:targetClass="com.example.shortcutpractice.PinnedShortcutContentActivity"
             android:targetPackage="com.example.shortcutpractice" />
     </shortcut>
