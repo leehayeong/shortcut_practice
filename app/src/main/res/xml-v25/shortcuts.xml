@@ -24,4 +24,26 @@
             android:targetClass="com.example.shortcutpractice.PinnedShortcutContentActivity"
             android:targetPackage="com.example.shortcutpractice" />
     </shortcut>
+
+    <!--
+    static shortcut 에 activity stack 쌓기
+    숏컷으로 열면 아래 정의된 Intent 순서대로 stack 이 쌓여서 열리게된다.
+    MainActivity -> ShortcutActivity 순서로 쌓았다면 숏컷으로 열었을때 ShortcutActivity 가 뜨고 백키를 눌렀을 때 MainActivity 가 뜬다.
+    -->
+    <shortcut
+        android:enabled="true"
+        android:shortcutId="stackShortcut"
+        android:shortcutLongLabel="@string/stack_shortcut_long_label"
+        android:shortcutShortLabel="@string/stack_shortcut_label">
+
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.example.shortcutpractice.MainActivity"
+            android:targetPackage="com.example.shortcutpractice" />
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.shortcutpractice.PinnedShortcutContentActivity"
+            android:targetPackage="com.example.shortcutpractice" />
+    </shortcut>
+
 </shortcuts>
