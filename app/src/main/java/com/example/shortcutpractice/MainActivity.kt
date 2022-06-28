@@ -6,9 +6,12 @@ import android.content.pm.ShortcutManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.content.pm.ShortcutManagerCompat.getMaxShortcutCountPerActivity
 import androidx.core.graphics.drawable.IconCompat
 import androidx.databinding.DataBindingUtil
 import com.example.shortcutpractice.databinding.ActivityMainBinding
@@ -115,7 +118,8 @@ class MainActivity : AppCompatActivity() {
                 .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("dynamic://deeplink")))
                 .build()
 
-            shortcutManager.dynamicShortcuts = listOf(shortcut)     // 리스트자체를 바꿔주는거라 기존거 다 사라지고 새로운 숏컷리스트로 덮어씌워짐
+            shortcutManager.dynamicShortcuts =
+                listOf(shortcut)     // 리스트자체를 바꿔주는거라 기존거 다 사라지고 새로운 숏컷리스트로 덮어씌워짐
         } else {
         }
     }
@@ -152,16 +156,25 @@ class MainActivity : AppCompatActivity() {
      * 디바이스에서 보여줄 수 있는 높이를 초과하면 가장 먼저 추가한 숏컷이 삭제되고, 가장 최근에 추가한게 가장 아래에 뜸
      */
     private fun addDynamicShortcut(shortcutId: String) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            val context = applicationContext
-            val shortcut = ShortcutInfoCompat.Builder(context, shortcutId)
-                .setShortLabel(shortcutId)
-                .setLongLabel(shortcutId)
-                .setIcon(IconCompat.createWithResource(context, R.drawable.ic_launcher_background))
-                .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("dynamic://deeplink")))
-                .build()
+        val context = applicationContext
 
-            ShortcutManagerCompat.pushDynamicShortcut(context, shortcut)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            val maxCount = getMaxShortcutCountPerActivity(context)
+            val curCount = ShortcutManagerCompat.getShortcuts(context, ShortcutManagerCompat.FLAG_MATCH_CACHED or ShortcutManagerCompat.FLAG_MATCH_MANIFEST).size
+            Log.d("hayeong", "$maxCount $curCount")
+
+            // 기기에서 지원하는 숏컷개수보다 현재 숏컷 개수가 적을때에만 다이나믹숏컷 추가
+            if (curCount < maxCount) {
+                val shortcut = ShortcutInfoCompat.Builder(context, shortcutId)
+                    .setShortLabel(shortcutId)
+                    .setLongLabel(shortcutId)
+                    .setIcon(IconCompat.createWithResource(context, R.drawable.ic_launcher_background))
+                    .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("dynamic://deeplink")))
+                    .build()
+
+                ShortcutManagerCompat.pushDynamicShortcut(context, shortcut)
+            }
+
         } else {
         }
     }
