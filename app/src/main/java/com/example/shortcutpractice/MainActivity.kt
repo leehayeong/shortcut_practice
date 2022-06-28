@@ -160,7 +160,7 @@ class MainActivity : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             val maxCount = getMaxShortcutCountPerActivity(context)
-            val curCount = ShortcutManagerCompat.getShortcuts(context, ShortcutManagerCompat.FLAG_MATCH_CACHED or ShortcutManagerCompat.FLAG_MATCH_MANIFEST).size
+            val curCount = ShortcutManagerCompat.getShortcuts(context, ShortcutManagerCompat.FLAG_MATCH_DYNAMIC or ShortcutManagerCompat.FLAG_MATCH_MANIFEST).size
             Log.d("hayeong", "$maxCount $curCount")
 
             // 기기에서 지원하는 숏컷개수보다 현재 숏컷 개수가 적을때에만 다이나믹숏컷 추가
