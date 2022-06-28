@@ -96,7 +96,6 @@ class MainActivity : AppCompatActivity() {
 
             shortcutManager.dynamicShortcuts = listOf(shortcut)
         } else {
-            TODO("VERSION.SDK_INT < N_MR1")
         }
     }
 
@@ -107,7 +106,6 @@ class MainActivity : AppCompatActivity() {
             shortcutManager.removeDynamicShortcuts(listOf(shortcutId))  // 특정 아이디를 가진 숏컷만 지우기
 //            shortcutManager.removeAllDynamicShortcuts()               // 전체 다이나믹 숏컷 지우기
         } else {
-            TODO("VERSION.SDK_INT < N_MR1")
         }
     }
 
@@ -124,7 +122,6 @@ class MainActivity : AppCompatActivity() {
 
             shortcutManager.updateShortcuts(listOf(shortcut))   // 아이디로 숏컷을 찾아 변경하고 업데이트
         } else {
-            TODO("VERSION.SDK_INT < N_MR1")
         }
     }
 }
