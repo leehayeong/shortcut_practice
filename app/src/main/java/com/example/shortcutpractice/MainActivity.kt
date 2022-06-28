@@ -24,6 +24,15 @@ class MainActivity : AppCompatActivity() {
         binding.dynamicShortcutBtn.setOnClickListener {
             setDynamicShortcut()    // 여러번 클릭해도 같은 숏컷은 한개만 생성됨
         }
+
+        // Dynamic shortcut 은 숏컷ID 를 알고있다면 앱 실행중에 정보를 변경할 수 있음
+        binding.dynamicRemoveBtn.setOnClickListener {
+            removeDynamicShortcut("dynamicShortcutId")
+        }
+
+        binding.dynamicChangeLabelBtn.setOnClickListener {
+
+        }
     }
 
     private fun setPinnedShortcut() {
@@ -78,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             val context = applicationContext
             val shortcutManager = getSystemService<ShortcutManager>(ShortcutManager::class.java)
-            val shortcut = ShortcutInfo.Builder(context, "shortcutId1")
+            val shortcut = ShortcutInfo.Builder(context, "dynamicShortcutId")
                 .setShortLabel("dynamic")
                 .setLongLabel("dynamic - longLabel")
                 .setDisabledMessage("This shortcut is disabled")
@@ -86,6 +95,17 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
             shortcutManager.dynamicShortcuts = listOf(shortcut)
+        } else {
+            TODO("VERSION.SDK_INT < N_MR1")
+        }
+    }
+
+    private fun removeDynamicShortcut(shortcutId: String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            val context = applicationContext
+            val shortcutManager = getSystemService<ShortcutManager>(ShortcutManager::class.java)
+            shortcutManager.removeDynamicShortcuts(listOf(shortcutId))  // 특정 아이디를 가진 숏컷만 지우기
+//            shortcutManager.removeAllDynamicShortcuts()               // 전체 다이나믹 숏컷 지우기
         } else {
             TODO("VERSION.SDK_INT < N_MR1")
         }

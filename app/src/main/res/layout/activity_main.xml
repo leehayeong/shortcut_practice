@@ -27,5 +27,33 @@
             android:text="dynamic shortcut"
             app:layout_constraintTop_toBottomOf="@id/pinnedShortcutBtn" />
 
+        <TextView
+            android:id="@+id/dynamicLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="다이나믹 숏컷 동적변경"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/dynamicShortcutBtn" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dynamicRemoveBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="remove"
+            app:layout_constraintEnd_toStartOf="@id/dynamicChangeLabelBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dynamicLabel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dynamicChangeLabelBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="label change"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dynamicRemoveBtn"
+            app:layout_constraintTop_toBottomOf="@id/dynamicLabel" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
