@@ -6,4 +6,13 @@
 
     <string name="stack_shortcut_label">stack shortcut</string>
     <string name="stack_shortcut_long_label">stack shortcut long</string>
+
+    <string name="shortcut_test_label_1">static 1</string>
+    <string name="shortcut_test_long_label_1">static 1</string>
+
+    <string name="shortcut_test_label_2">static 2</string>
+    <string name="shortcut_test_long_label_2">static 2</string>
+
+    <string name="shortcut_test_label_3">static 3</string>
+    <string name="shortcut_test_long_label_3">static 3</string>
 </resources>

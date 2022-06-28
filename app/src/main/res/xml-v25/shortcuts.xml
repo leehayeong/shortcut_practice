@@ -46,4 +46,40 @@
             android:targetPackage="com.example.shortcutpractice" />
     </shortcut>
 
+    <!-- static shortcut 개수 테스트 -->
+    <shortcut
+        android:enabled="true"
+        android:shortcutId="test1"
+        android:shortcutLongLabel="@string/shortcut_test_long_label_1"
+        android:shortcutShortLabel="@string/shortcut_test_label_1">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.shortcutpractice.StaticShortcutActivity"
+            android:targetPackage="com.example.shortcutpractice" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:shortcutId="test2"
+        android:shortcutLongLabel="@string/shortcut_test_long_label_2"
+        android:shortcutShortLabel="@string/shortcut_test_label_2">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.shortcutpractice.StaticShortcutActivity"
+            android:targetPackage="com.example.shortcutpractice" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:shortcutId="test3"
+        android:shortcutLongLabel="@string/shortcut_test_long_label_3"
+        android:shortcutShortLabel="@string/shortcut_test_label_3">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.shortcutpractice.StaticShortcutActivity"
+            android:targetPackage="com.example.shortcutpractice" />
+    </shortcut>
 </shortcuts>
