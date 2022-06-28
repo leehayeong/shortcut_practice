@@ -9,6 +9,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.graphics.drawable.IconCompat
 import androidx.databinding.DataBindingUtil
 import com.example.shortcutpractice.databinding.ActivityMainBinding
 
@@ -27,11 +28,31 @@ class MainActivity : AppCompatActivity() {
 
         // Dynamic shortcut 은 숏컷ID 를 알고있다면 앱 실행중에 정보를 변경할 수 있음
         binding.dynamicRemoveBtn.setOnClickListener {
-            removeDynamicShortcut("dynamicShortcutId")
+            removeDynamicShortcut("6")
         }
 
         binding.dynamicChangeLabelBtn.setOnClickListener {
             updateDynamicShortcut()
+        }
+
+        // 다이나믹 숏컷 추가할 때 개수 테스트
+        binding.addBtn1.setOnClickListener {
+            addDynamicShortcut("1")
+        }
+        binding.addBtn2.setOnClickListener {
+            addDynamicShortcut("2")
+        }
+        binding.addBtn3.setOnClickListener {
+            addDynamicShortcut("3")
+        }
+        binding.addBtn4.setOnClickListener {
+            addDynamicShortcut("4")
+        }
+        binding.addBtn5.setOnClickListener {
+            addDynamicShortcut("5")
+        }
+        binding.addBtn6.setOnClickListener {
+            addDynamicShortcut("6")
         }
     }
 
@@ -94,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                 .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("dynamic://deeplink")))
                 .build()
 
-            shortcutManager.dynamicShortcuts = listOf(shortcut)
+            shortcutManager.dynamicShortcuts = listOf(shortcut)     // 리스트자체를 바꿔주는거라 기존거 다 사라지고 새로운 숏컷리스트로 덮어씌워짐
         } else {
         }
     }
@@ -121,6 +142,26 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
             shortcutManager.updateShortcuts(listOf(shortcut))   // 아이디로 숏컷을 찾아 변경하고 업데이트
+        } else {
+        }
+    }
+
+    /**
+     * ShortcutManagerCompat > pushDynamicShortcut 버전별로 보일러플레이트 코드 없애고 자동분기
+     * 가장 먼저 추가한게 가장 위에 뜨고, 가장 마지막에 추가한게 가장 아래에 뜸
+     * 디바이스에서 보여줄 수 있는 높이를 초과하면 가장 먼저 추가한 숏컷이 삭제되고, 가장 최근에 추가한게 가장 아래에 뜸
+     */
+    private fun addDynamicShortcut(shortcutId: String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            val context = applicationContext
+            val shortcut = ShortcutInfoCompat.Builder(context, shortcutId)
+                .setShortLabel(shortcutId)
+                .setLongLabel(shortcutId)
+                .setIcon(IconCompat.createWithResource(context, R.drawable.ic_launcher_background))
+                .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("dynamic://deeplink")))
+                .build()
+
+            ShortcutManagerCompat.pushDynamicShortcut(context, shortcut)
         } else {
         }
     }

@@ -55,5 +55,69 @@
             app:layout_constraintStart_toEndOf="@id/dynamicRemoveBtn"
             app:layout_constraintTop_toBottomOf="@id/dynamicLabel" />
 
+        <TextView
+            android:id="@+id/dynamicAddLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="다이나믹 숏컷 추가하기 버튼"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/dynamicRemoveBtn" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addBtn1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            app:layout_constraintEnd_toStartOf="@id/addBtn2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dynamicAddLabel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addBtn2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="2"
+            app:layout_constraintEnd_toStartOf="@id/addBtn3"
+            app:layout_constraintStart_toEndOf="@id/addBtn1"
+            app:layout_constraintTop_toBottomOf="@id/dynamicAddLabel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addBtn3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            app:layout_constraintEnd_toStartOf="@id/addBtn4"
+            app:layout_constraintStart_toEndOf="@id/addBtn2"
+            app:layout_constraintTop_toBottomOf="@id/dynamicAddLabel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addBtn4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="4"
+            app:layout_constraintEnd_toStartOf="@id/addBtn5"
+            app:layout_constraintStart_toEndOf="@id/addBtn3"
+            app:layout_constraintTop_toBottomOf="@id/dynamicAddLabel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addBtn5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="5"
+            app:layout_constraintEnd_toStartOf="@id/addBtn6"
+            app:layout_constraintStart_toEndOf="@id/addBtn4"
+            app:layout_constraintTop_toBottomOf="@id/dynamicAddLabel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addBtn6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/addBtn5"
+            app:layout_constraintTop_toBottomOf="@id/dynamicAddLabel" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
