@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.dynamicChangeLabelBtn.setOnClickListener {
-
+            updateDynamicShortcut()
         }
     }
 
@@ -106,6 +106,23 @@ class MainActivity : AppCompatActivity() {
             val shortcutManager = getSystemService<ShortcutManager>(ShortcutManager::class.java)
             shortcutManager.removeDynamicShortcuts(listOf(shortcutId))  // 특정 아이디를 가진 숏컷만 지우기
 //            shortcutManager.removeAllDynamicShortcuts()               // 전체 다이나믹 숏컷 지우기
+        } else {
+            TODO("VERSION.SDK_INT < N_MR1")
+        }
+    }
+
+    private fun updateDynamicShortcut() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            val context = applicationContext
+            val shortcutManager = getSystemService<ShortcutManager>(ShortcutManager::class.java)
+            val shortcut = ShortcutInfo.Builder(context, "dynamicShortcutId")
+                .setShortLabel("dynamic2222")
+                .setLongLabel("dynamic - longLabel2222")
+                .setDisabledMessage("This shortcut is disabled")
+                .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("dynamic://deeplink")))
+                .build()
+
+            shortcutManager.updateShortcuts(listOf(shortcut))   // 아이디로 숏컷을 찾아 변경하고 업데이트
         } else {
             TODO("VERSION.SDK_INT < N_MR1")
         }
