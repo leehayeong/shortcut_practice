@@ -1,6 +1,5 @@
 package com.example.shortcutpractice
 
-import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
@@ -21,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         setPinnedShortcut()
+
+        binding.dynamicShortcutBtn.setOnClickListener {
+            setDynamicShortcut()    // 여러번 클릭해도 같은 숏컷은 한개만 생성됨
+        }
     }
 
     private fun setPinnedShortcut() {
@@ -68,6 +71,23 @@ class MainActivity : AppCompatActivity() {
                     .build()
 
             ShortcutManagerCompat.requestPinShortcut(this, shortcutInfo, null)
+        }
+    }
+
+    private fun setDynamicShortcut() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            val context = applicationContext
+            val shortcutManager = getSystemService<ShortcutManager>(ShortcutManager::class.java)
+            val shortcut = ShortcutInfo.Builder(context, "shortcutId1")
+                .setShortLabel("dynamic")
+                .setLongLabel("dynamic - longLabel")
+                .setDisabledMessage("This shortcut is disabled")
+                .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("dynamic://deeplink")))
+                .build()
+
+            shortcutManager.dynamicShortcuts = listOf(shortcut)
+        } else {
+            TODO("VERSION.SDK_INT < N_MR1")
         }
     }
 }

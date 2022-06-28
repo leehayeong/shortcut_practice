@@ -1,5 +1,7 @@
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
     <!--
+    enabled -> 이 값이 true 라면 숏컷 아이콘을 눌렀을 때 기능이 동작. false 라면 disabledMessage 가 보여짐
+    shortcutId -> Shortcut 의 고유한 ID. 숏컷을 등록하거나 찾을 때 이 ID 를 사용
     shortcutShortLabel -> 바로가기의 목적을 설명하는 간결한 문구. 10자로 제한
     shortcutShortLabel -> 바로가기의 목적을 설명하는 확장된 문구. 공간이 충분하다면 short 대신 Long 표시. 25자로 제한
     shortcutDisabledMessage -> 사용자가 사용 중지된 바로가기를 실행햐려고할 때 런처에 표시되는 메시지 (enabled false 일때에 적용되는 속성)
@@ -12,7 +14,7 @@
         android:shortcutShortLabel="@string/short_label">
 
         <!--
-        intent -> 사용자가 바로가기를 선택할 때 시스템에서 실행하는 작업
+        intent -> 사용자가 바로가기를 선택할 때 실행되는 인텐트. 내 앱의 액티비티 또는 다른앱을 실행시킬 수 있음
         categories -> 작업유형 (예. 새로운 채팅 메시지 만들기)
         capability-binding -> 바로가기와 연결된 기능 선언
         -->
